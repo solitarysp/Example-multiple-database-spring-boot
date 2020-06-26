@@ -39,8 +39,8 @@ public class UserDatabaseConfig {
     @Primary
     @Bean(name = "userDataSource")
     @ConfigurationProperties(prefix = "app.datasource.user.configuration")
-    public DataSource dataSource() {
-        return dataSourceProperties().initializeDataSourceBuilder().type(HikariDataSource.class).build();
+    public DataSource dataSource(@Qualifier("userDataSourceProperties") DataSourceProperties dataSourceProperties) {
+        return dataSourceProperties.initializeDataSourceBuilder().type(HikariDataSource.class).build();
     }
     @Primary
     @Bean(name = "userEntityManagerFactory")
